@@ -1,123 +1,106 @@
 - [ ] **System types**
-playerApllication {
 
-id: number
+# playerApllication
 
-status: enum (accepted, rejected)
+- id: number
+- status: enum (accepted, rejected)
+- date: datetime
+- editionId: number
+- basePrice:
 
-date: datetime
+# AuctionRound
 
-editionId: number
+- id:number
+- playerPool: PlayerPool
+- bids: Bid[]
 
-basePrice: 
-
-
-
-AuctionRound{
-
-id:number
-
-playerPool: PlayerPool
-
-bids: Bid[]
-
-
-
-playerPool{
-
-
-
-
+playerPool
 
 - [ ] **LeagueService**
 - type
-    - id: number
-    - name: string
 
+  - id: number
+  - name: string
 
 - methods
-    - createOne(name)
-    - getAll
-    - getOne
 
+  - createOne(name)
+  - getAll
+  - getOne
 
 - [ ] **EditionService**
 - type
-    - id: number
-    - leagueId: number (foreign) 
-    - name: string
-    - planned start date: datetime
-    - planned end date: datetime
-    - player application open date: datetime
-    - player application end date: datetime
-    - applications: playerApllication
 
+  - id: number
+  - leagueId: number (foreign)
+  - name: string
+  - planned start date: datetime
+  - planned end date: datetime
+  - player application open date: datetime
+  - player application end date: datetime
+  - applications: playerApllication
 
 - methods
-    - createOne(legueId,EditionName)
-    - getAll
-    - getOne
-    - startApplications(application, date?) //can be automatic
-    - stopApplications //can be automatic
-****
+  - createOne(legueId,EditionName)
+  - getAll
+  - getOne
+  - startApplications(application, date?) //can be automatic
+  - stopApplications //can be automatic
+
+---
 
 - [ ] **Auction**
-- types 
-    - id: number
-    - Auction purse amount: number
-    - max retention allowed: number
-    - rounds: AuctionRound
-    - numberOfRounds: number
-    - plannedStartDate: date
-    - coolDownPeriod: time
-    - editionId: number
-    - RegisteredFranchise: RegisteredFranchise[]
-
+- types
+  - id: number
+  - Auction purse amount: number
+  - max retention allowed: number
+  - rounds: AuctionRound
+  - numberOfRounds: number
+  - plannedStartDate: date
+  - coolDownPeriod: time
+  - editionId: number
+  - RegisteredFranchise: RegisteredFranchise[]
 
 RegisteredFranchise
 
 - type
-    - id: number
-    - auctionId: number
-    - teamId: number
-    - purse: number
+  - id: number
+  - auctionId: number
+  - teamId: number
+  - purse: number
 
-
- RegisteredPlayers sub-class of Players:
-
-
+RegisteredPlayers sub-class of Players:
 
 - methods
-    - create
-    - startAuction // can be automatic
-    - displayPlayer
-    - 
+
+  - create
+  - startAuction // can be automatic
+  - displayPlayer
+  -
 
 - [ ] FranchiseService
-type
 
-id: number
+* type
 
-name: string
+  - id: number
+  - name: string
+  - Teams: Team[]
 
-Teams: Team[]
+* Method
 
-Method
+  - createOne (name, purse, city)
+  - RegisterForAuction ()
+  - addTeams (TeamDTO)
 
-- createOne (name, purse, city)
-- RegisterForAuction ()
-- addTeams (TeamDTO)
-
-
-
-- [ ] Team 
-    - [ ] Type
-        - purse: number
-        - id: number
-        - city: string
-        - Players: Players
-        - FranchiseId: number
-    - [ ] Methods
-        - createOne (name, city)
-        - addPlayer (player: Player | Player[])
-        - 
+- [ ] Team
+  - [ ] Type
+    - purse: number
+    - id: number
+    - city: string
+    - purse: number
+    - Players: Players
+    - FranchiseId: number
+  - [ ] Methods
+    - createOne (name, city)
+    - addPlayer (player: Player | Player[])
+    -
