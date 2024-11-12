@@ -1,3 +1,6 @@
+import { Edition } from "../Edition/editionService"
+import { CreateLeagueDTO } from "./Types"
+
 export class LeagueService{
     public leagues: League[] = []
 
@@ -5,8 +8,8 @@ export class LeagueService{
         return this.leagues
     }
 
-    addOne(name: string){
-        let newLeague:League = new League(name)
+    addOne(league: CreateLeagueDTO){
+        let newLeague:League = new League(league)
         this.leagues = [...this.leagues, newLeague]
         return newLeague
     }
@@ -20,12 +23,12 @@ export class League{
     public static counter: number = 0
     public id : number;
     public name: string;
-    // public editions: Edition[]
+    public editions: Edition[]
 
-    constructor(name:string){
+    constructor(league:CreateLeagueDTO){
         League.counter+=1
-        this.name = name
+        this.name = league.name;
         this.id = League.counter;
-
+        this.editions =[];
     }
 }

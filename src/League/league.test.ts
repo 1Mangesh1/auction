@@ -1,9 +1,15 @@
 import { LeagueService } from "./leagueService";
+import { CreateLeagueDTO } from "./Types";
 
 describe("league service", () => {
   let service: LeagueService;
+  let iplDTO : CreateLeagueDTO 
   beforeEach(() => {
     service = new LeagueService();
+    iplDTO = {
+        name: "IPL"
+    }
+
   });
   it("should start with no leagues", () => {
     //given
@@ -17,7 +23,7 @@ describe("league service", () => {
     let leagues = service.getAll();
     expect(leagues).toHaveLength(0);
 
-    let newLeague = service.addOne('IPL')
+    let newLeague = service.addOne(iplDTO)
     leagues = service.getAll()
 
     expect(leagues).toHaveLength(1)
@@ -28,7 +34,7 @@ describe("league service", () => {
     let leagues = service.getAll();
     expect(leagues).toHaveLength(0);
 
-    let newLeague = service.addOne('IPL')
+    let newLeague = service.addOne(iplDTO)
     leagues = service.getAll()
 
     expect(leagues).toHaveLength(1)
