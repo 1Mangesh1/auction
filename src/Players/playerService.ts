@@ -47,7 +47,7 @@ export class PlayerService {
     };
   }
 
-}
+
 
 
   apply(application: CreateApplicationDTO) {
