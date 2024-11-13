@@ -82,7 +82,7 @@ describe("Player Service",()=>{
         // auction 
         // player 
         //Applications
-        let auctionId=1     //findAuction()
+        let newAuctionId=1     //findAuction()
         let thala: CreatePlayerDTO = {
             dob: 2002,
             name: "Mahi",
@@ -95,11 +95,14 @@ describe("Player Service",()=>{
             }
         }
         let newPlayer = playerService.addOne(thala)
-        let applicationDTO: CreateApplicationDTO
-        // newPlayer.apply()
-        //RegisteredPlayers 
+        let applicationDTO: CreateApplicationDTO = {
+           playerId: newPlayer.id,
+           auctionId : newAuctionId,
+           roundBasePrice: {1:200,2:30}
 
-        //PlayerPool
+        }
+        playerService.apply(applicationDTO)
+        
     })
 
 

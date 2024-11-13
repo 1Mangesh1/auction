@@ -1,4 +1,4 @@
-import { CreateApplicationDTO,Status } from "./types";
+import { ApplicationMeta, CreateApplicationDTO,Status } from "./types";
 
 export class ApplicationService{
     private applications: Application[]
@@ -16,6 +16,33 @@ export class ApplicationService{
         this.applications=[...this.applications,newApplication]
         return newApplication
     }
+    deleteOne(id: number){
+        this.applications = this.applications.filter((application)=>application.id!==id)
+    }
+    approve(id:number,meta:ApplicationMeta)
+    {
+        this.applications = this.applications.map((application)=>{
+            if(application.id===id){
+                application.status = "accepted"
+                application.meta = meta
+            }
+            return application
+        })
+
+    }
+    reject(id:number,meta:ApplicationMeta){
+        this.applications = this.applications.map((application)=>{
+            if(application.id===id){
+                application.status = "rejected"
+                application.meta = meta
+            }
+            return application
+        })
+
+    }
+    getAllApproved(){
+        return this.applications.filter((application)=>application.status==="accepted")
+    }
 
 }
 
@@ -26,6 +53,7 @@ export class Application{
     public readonly auctionId:number
     public status: Status
     public roundBasePrice: {[key: number]: number}
+    public meta: ApplicationMeta = {}
 
     constructor(application: CreateApplicationDTO){
         Application.counter += 1
@@ -34,5 +62,6 @@ export class Application{
         this.playerId = application.playerId
         this.status = "pending"
         this.roundBasePrice = application.roundBasePrice
+        
     }
 }
