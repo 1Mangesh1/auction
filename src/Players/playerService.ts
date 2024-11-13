@@ -51,9 +51,9 @@ export class PlayerService {
 
 
 
-  apply(application: CreateApplicationDTO) {
-    let applicationService = new ApplicationService()
-    applicationService.addOne(application)
+  apply(application: CreateApplicationDTO,applicationService:ApplicationService) {
+
+    return applicationService.addOne(application)
   }
 }
 
