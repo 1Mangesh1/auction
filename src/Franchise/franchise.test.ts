@@ -1,4 +1,5 @@
 import { FranchiseService } from "./Franchise";
+import { Team } from "./Team/team";
 
 describe("Franchises", () => {
   let franchiseService: FranchiseService;
@@ -37,5 +38,30 @@ describe("Franchises", () => {
 
     expect(franchises).toHaveLength(0);
     expect(currentFranchise).toBeUndefined();
+  });
+  it("should be able to add one Team to franchise", () => {
+    // given
+    let franchises = franchiseService.getAllFranchises();
+
+    // when
+    let newFranchise = franchiseService.createOne("Mumbai Indians");
+    franchises = franchiseService.getAllFranchises();
+    let team = franchiseService.addOneTeam(
+      newFranchise.id,
+      "Mumbai Indians",
+      "Mumbai"
+    );
+    expect(franchises).toHaveLength(1);
+    let currentFranchise = franchises.find(
+      (franchise) => franchise.id === newFranchise.id
+    );
+
+    let franchiseTeam = currentFranchise?.teams?.find(
+      (teams) => teams?.id === team?.id
+    );
+    // then
+    // expect(franchises).toHaveLength(0);
+    expect(currentFranchise?.teams).toHaveLength(1);
+    expect(franchiseTeam?.name).toBe("Mumbai Indians");
   });
 });
