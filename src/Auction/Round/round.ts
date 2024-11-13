@@ -6,7 +6,7 @@ export class Round {
   private static counter: number = 0;
   private readonly id: number;
   public poolPlayers: Player[];
-  public status: "ongoing" | "pending" | "concluded";
+  public status: "ongoing" | "pending" | "concluded" | "halted";
 
   constructor(roundPlayers: Player[]) {
     Round.counter += 1;
