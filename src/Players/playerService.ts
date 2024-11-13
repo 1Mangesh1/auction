@@ -48,17 +48,15 @@ export class PlayerService {
     };
   }
 
-
-
-
-  apply(application: CreateApplicationDTO,applicationService:ApplicationService) {
-
-    return applicationService.addOne(application)
+  apply(
+    application: CreateApplicationDTO,
+    applicationService: ApplicationService
+  ) {
+    return applicationService.addOne(application);
   }
 }
 
-class Player {
-
+export class Player {
   public readonly id: number;
   public readonly name: string;
   public readonly nationality: string;
