@@ -70,12 +70,12 @@ export class RegisteredTeam {
   public readonly teamId: number;
   public purse: number;
 
-  constructor(franchise: RegisteredTeam) {
+  constructor(team: RegisteredTeam) {
     RegisteredTeam.counter += 1;
     this.id = RegisteredTeam.counter;
-    this.auctionId = franchise.auctionId;
-    this.editionId = franchise.auctionId;
-    this.purse = franchise.purse;
-    this.teamId = franchise.teamId;
+    this.auctionId = team.auctionId;
+    this.editionId = team.editionId;
+    this.purse = team.purse;
+    this.teamId = team.teamId;
   }
 }
