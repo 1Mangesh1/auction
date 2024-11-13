@@ -61,7 +61,7 @@ playerPool
   - editionId: number
   - RegisteredFranchise: RegisteredFranchise[]
 
-RegisteredFranchise
+RegisteredFranchiseTeams
 
 - type
   - id: number

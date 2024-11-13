@@ -30,3 +30,21 @@
      3. get auction
      4. start with no Registered franchises
      5. Get Registered franchises
+
+# Components:
+
+- Auction -
+
+  1.  AuctionId
+  2.  EditionId
+  3.  Rounds: Round
+  4.  Number Of rounds
+  5.  coolDown_Period
+  6.  RegisteredTeams[]
+  7.  ApprovedPlayers[]
+
+- Methods:
+  1. createAuction()
+  2. start(AuctionDTO = registeredPlayers, editionId,RegisteredTeams, no. of. rounds, coolDownPeriod)
+  3. startRound() = return Roundplayers/ PlayerPool
+  4. getRounds(auctionID) = return auctionRounds[]

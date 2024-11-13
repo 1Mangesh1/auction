@@ -46,12 +46,17 @@ export class PlayerService {
       ...updatedPlayer,
     };
   }
+
+}
+
+
   apply(application: CreateApplicationDTO) {
     
   }
 }
 
 class Player {
+
   public readonly id: number;
   public readonly name: string;
   public readonly nationality: string;
