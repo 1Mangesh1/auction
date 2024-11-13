@@ -10,7 +10,7 @@ export class FranchiseService {
     return newFranchise;
   }
 
-  getRegisteredFranchise() {
+  getRegisteredFranchiseTeams() {
     return this.registeredTeams;
   }
 
@@ -34,8 +34,9 @@ export class FranchiseService {
         // problematic
         franchise.teams = [...franchise.teams, newTeam];
       }
-      return franchise.teams;
+      return newTeam;
     }
+    throw new Error("Franchise not Found");
   }
   // franchise will register for team in auction
   registerOneTeamForAuction(teamRegistrationInfo: RegisteredTeam) {
@@ -43,6 +44,8 @@ export class FranchiseService {
     this.registeredTeams = [...this.registeredTeams, currentRegistration];
     return this.registeredTeams;
   }
+
+  getFranchiseTeam(franchise: Franchise) {}
 }
 
 export class Franchise {
@@ -67,12 +70,12 @@ export class RegisteredTeam {
   public readonly teamId: number;
   public purse: number;
 
-  constructor(franchise: RegisteredTeam) {
+  constructor(team: RegisteredTeam) {
     RegisteredTeam.counter += 1;
     this.id = RegisteredTeam.counter;
-    this.auctionId = franchise.auctionId;
-    this.editionId = franchise.auctionId;
-    this.purse = franchise.purse;
-    this.teamId = franchise.teamId;
+    this.auctionId = team.auctionId;
+    this.editionId = team.editionId;
+    this.purse = team.purse;
+    this.teamId = team.teamId;
   }
 }
