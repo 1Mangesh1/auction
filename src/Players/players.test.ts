@@ -1,55 +1,106 @@
-import { PlayerService, } from "./playerService"
-import { createPlayerDTO } from "./Types"
+import { ApplicationService } from "../Application/application"
+import { CreateApplicationDTO } from "../Application/types"
+import { CreateEditionDTO } from "../Edition/Types"
+import { PlayerService } from "./playerService"
+import { CreatePlayerDTO, EditPlayerDTO } from "./Types"
 
-describe("players",()=>{
+describe("Player Service",()=>{
     let playerService: PlayerService
-    let thala:createPlayerDTO = {
-        name:"thala",
-        nationality:"India",
-        dob: "01/01/1970",
-        calculated_skills : {
-            batter:5,
-            bowler:5,
-            wicketKeeper:5,
-            allRounder:5
-        }
-    }
-    let chiku:createPlayerDTO = {
-        name:"chiku",
-        nationality:"India",
-        dob: "01/01/2000",
-        calculated_skills : {
-            batter:4,
-            bowler:4,
-            wicketKeeper:4,
-            allRounder:4
-        }
-    }
-    beforeEach(()=>{
+    let applicationService: ApplicationService
+    beforeEach(() => {
         playerService = new PlayerService()
     })
-    it("should start with an empty list of players",()=>{
-        expect(playerService.getPlayers()).toHaveLength(0)
-    })
-    it("should add a player",()=>{
-        playerService.addPlayer(thala)
-        expect(playerService.getPlayers()).toHaveLength(1)
+
+    it("should start with no players", () => {
+        const players = playerService.getAll();
+        expect(players).toHaveLength(0);
     })
 
-    it("should add multiple players",()=>{
-        playerService.addPlayer(thala)
-        playerService.addPlayer(chiku)
-        expect(playerService.getPlayers()).toHaveLength(2)
+    it("should be able to add one player", ()=>{
+        let players = playerService.getAll();
+        expect(players).toHaveLength(0);
+        let thala: CreatePlayerDTO = {
+            dob: 2002,
+            name: "Mahi",
+            nationality: "indian",
+            skills : {
+                batter: 0,
+                bowler: 0,
+                allRounder:0,
+                wicketKeeper: 1
+            }
+        }
+        let newPlayer = playerService.addOne(thala)
+        players = playerService.getAll()
+        expect(players).toHaveLength(1)
     })
 
-    it("should remove a player",()=>{
-        let thalaId=playerService.addPlayer(thala)
-        playerService.removePlayer(thalaId)
-        expect(playerService.getPlayers()).toHaveLength(0)
+    it("Should able delete player", ()=>{
+        let thala: CreatePlayerDTO = {
+            dob: 2002,
+            name: "Mahi",
+            nationality: "indian",
+            skills : {
+                batter: 0,
+                bowler: 0,
+                allRounder:0,
+                wicketKeeper: 1
+            }
+        }
+        let newPlayer = playerService.addOne(thala)
+        let players = playerService.getAll()
+        expect(players).toHaveLength(1)
+        let isDeleted = playerService.deleteOne(newPlayer.id)
+        players = playerService.getAll()
+        expect(players).toHaveLength(0)
+        expect(isDeleted).toBeTruthy()
     })
 
-    it("should able to apply for auction",()=>{
-        
+    it("should be able to edit player profile",()=>{
+        let thala: CreatePlayerDTO = {
+            dob: 2002,
+            name: "Mahi",
+            nationality: "indian",
+            skills : {
+                batter: 0,
+                bowler: 0,
+                allRounder:0,
+                wicketKeeper: 1
+            }
+        }
+        let newPlayer = playerService.addOne(thala)
+        let editPlayer: EditPlayerDTO = {
+            name: "msd"
+        }
+        playerService.editOne(newPlayer.id, editPlayer);
+        let players = playerService.getAll();
+        let player = players.find((player) => player.id === newPlayer.id)
+        expect(player?.name).toBe("msd")
+
     })
+    it("should be able to apply for auction application",()=>{
+        // auction 
+        // player 
+        //Applications
+        let auctionId=1     //findAuction()
+        let thala: CreatePlayerDTO = {
+            dob: 2002,
+            name: "Mahi",
+            nationality: "indian",
+            skills : {
+                batter: 0,
+                bowler: 0,
+                allRounder:0,
+                wicketKeeper: 1
+            }
+        }
+        let newPlayer = playerService.addOne(thala)
+        let applicationDTO: CreateApplicationDTO
+        // newPlayer.apply()
+        //RegisteredPlayers 
+
+        //PlayerPool
+    })
+
 
 })
