@@ -1,5 +1,6 @@
 import { CreateApplicationDTO } from "../Application/types";
 import { CreatePlayerDTO, EditPlayerDTO, Skill } from "./Types";
+import { ApplicationService } from "../Application/application";
 
 export class PlayerService {
   private players: Player[];
@@ -51,7 +52,8 @@ export class PlayerService {
 
 
   apply(application: CreateApplicationDTO) {
-    
+    let applicationService = new ApplicationService()
+    applicationService.addOne(application)
   }
 }
 
